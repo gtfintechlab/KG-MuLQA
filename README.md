@@ -1,7 +1,3 @@
----
-license: cc-by-nc-nd-4.0
----
-
 # KG-MuLQA: A Framework for KG-based Multi-Level QA Extraction and Long-Context LLM Evaluation
 
 <p align="center">
@@ -120,10 +116,10 @@ conda activate kgmulqa
 If you use KG‑MuLQA in your work, please cite:
 
 ```bibtex
-@misc{tatarinov2025kgqagenknowledgegraphbasedframeworksystematic,
-      title={KG-QAGen: A Knowledge-Graph-Based Framework for Systematic Question Generation and Long-Context LLM Evaluation}, 
+@misc{tatarinov2026kgmulqaframeworkkgbasedmultilevel,
+      title={KG-MuLQA: A Framework for KG-based Multi-Level QA Extraction and Long-Context LLM Evaluation}, 
       author={Nikita Tatarinov and Vidhyakshaya Kannan and Haricharana Srinivasa and Arnav Raj and Harpreet Singh Anand and Varun Singh and Aditya Luthra and Ravij Lade and Agam Shah and Sudheer Chava},
-      year={2025},
+      year={2026},
       eprint={2505.12495},
       archivePrefix={arXiv},
       primaryClass={cs.CL},
