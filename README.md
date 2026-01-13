@@ -69,8 +69,6 @@ conda activate kgmulqa
 
    - Customize `LLM_PROVIDER` and `MODEL_NAME` to change the model to benchmark.
 
-   - Customize `TESTING_REGIME` to change the benchmarking setting.
-
 7. For inference, navigate to `inference` directory. Run the inference:
 
 ```bash
