@@ -1,62 +1,51 @@
-# KG-QAGen: A Knowledge-Graph-Based Framework for Systematic Question Generation and Long-Context LLM Evaluation
+# KG-MuLQA: A Framework for KG-based Multi-Level QA Extraction and Long-Context LLM Evaluation
 
 <p align="center">
-  <a href="https://github.com/gtfintechlab/KG-QAGen">
-    <img src="https://img.shields.io/badge/GitHub-KG--QAGen-black?logo=github" alt="🐙 GitHub" />
+  <a href="https://arxiv.org/abs/2505.12495">
+    <img src="https://img.shields.io/badge/arXiv-2505.12495-red?logo=arxiv"/>
   </a>
-  <a href="https://huggingface.co/datasets/gtfintechlab/KG-QAGen-D">
-    <img src="https://img.shields.io/badge/Dataset-HuggingFace-yellow" alt="🤗 Dataset" />
+  <a href="https://huggingface.co/datasets/gtfintechlab/KG-MuLQA-D">
+    <img src="https://img.shields.io/badge/HuggingFace-KG--MuLQA--D-yellow?logo=huggingface" />
   </a>
-  <a href="https://arxiv.org/abs/YYYY.MM.NNNNN">
-    <img src="https://img.shields.io/badge/arXiv-YYYY.MM.NNNNN-red?logo=arxiv" alt="📖 arXiv" />
+  <a href="https://github.com/gtfintechlab/KG-MuLQA">
+    <img src="https://img.shields.io/badge/GitHub-KG--MuLQA-black?logo=github"/>
   </a>
 </p>
 
-KG‑QAGen is a framework that leverages structured annotations of large documents to build knowledge graphs and systematically extract QA pairs at controlled difficulty levels, enabling fine‑grained evaluation of long‑context LLMs.
+KG‑MuLQA is a framework that (1) extracts QA pairs at multiple complexity levels (2) along three key dimensions -- multi-hop retrieval, set operations, and answer plurality, (3) by leveraging knowledge-graph-based document representations.
 
 <p align="center">
-  <img src="figures/Our_Pipeline.png" width="100%" alt="KG‑QAGen Overview" />
+  <img src="artifacts/our_pipeline.png" width="80%" alt="KG‑MuLQA Overview" />
 </p>
 
-*Overview of KG-QAGen. Credit agreements are annotated to identify entities and their relationships, forming a knowledge graph representation. This graph is then used to systematically extract multi-level QA pairs, which serve as the basis for benchmarking long-context LLMs.*
+*Overview of KG-MuLQA. Credit agreements are annotated to identify entities and their relationships, forming a knowledge graph representation. This graph is then used to systematically extract multi-level QA pairs, which serve as the basis for benchmarking long-context LLMs.*
 
 
-## KG‑QAGen‑D Dataset
+## KG‑MuLQA-D Dataset
 
-We produce **KG‑QAGen‑D**, a 20,139-question benchmark derived from 170 SEC credit agreements (2013–2022). Each QA pair is tagged with a composite complexity level (L = #hops + #set‑ops + plurality), split into *Easy*, *Medium*, and *Hard*.
+We produce **KG‑MuLQA‑D**, a dataset of 20,139 QA pairs derived from 170 SEC credit agreements (2013–2022) and categorized by five complexity levels. Each QA pair is tagged with a composite complexity level (L = \#hops + \#set‑ops + plurality), split into *Easy*, *Medium*, and *Hard*.
 
-## Leaderboard & Evaluation Platform
+<p align="center">
+  <img src="artifacts/templates.png" width="100%" alt="QA Templates" />
+</p>
 
-To facilitate reproducibility and future research, we release the **KG‑QAGen‑D** dataset under a [CC-BY-NC-ND 4.0 license](https://creativecommons.org/licenses/by-nc-nd/4.0/). The dataset is divided into development and test sets as follows:
+*This table illustrates the question templates used to construct KG-MuLQA-D, structured along three dimensions: plurality (P), number of hops (H), and set operations (\#SO). It includes example templates, corresponding knowledge graph query paths, and logical operations involved. These dimensions are used to compute the overall complexity level for each QA pair. The full list of templates can be found in the paper.*
 
-| **Stats**                 |   **Dev** |   **Test** |  **Total** |
-| ------------------------- | --------: | ---------: | ---------: |
-| # Documents               |        40 |        130 |        170 |
-| # Questions per Doc (Min) |         1 |          1 |          1 |
-| # Questions per Doc (Avg) |     14.75 |      23.49 |      21.44 |
-| # Questions per Doc (Max) |       83  |        428 |        428 |
-| # Easy Questions          |     1,499 |      5,051 |      6,550 |
-| # Medium Questions        |     2,680 |     10,203 |     12,883 |
-| # Hard Questions          |       239 |        467 |        706 |
-| **Total Questions**       | **4,418** | **15,721** | **20,139** |
+## LLM Benchmarking & Evaluation
 
-* **Development Set (~25%)**: 40 documents and 4,418 QA pairs are publicly released to support model development and validation.
-* **Test Set (~75%)**: 130 documents and 15,721 QA pairs are **not released** to prevent data contamination and ensure fair evaluation (questions are released for the leaderboard).
+We evaluate 16 proprietary and open-weight LLMs on KG-MuLQA-D benchmark. As question complexity increases, the LLM's ability to retrieve and generate correct responses degrades markedly. We categorize observed LLM failures into four major types, each of which presents recurring challenges as question complexity increases: Misinterpretation of Semantics, Implicit Information Gaps, Set Operation Failures, and Long-Context Retrieval Errors. See the paper for detailed analysis.
 
-### Online Leaderboard
+<p align="center">
+  <img src="artifacts/evaluation.png" width="100%" alt="Evaluation Results" />
+</p>
 
-We will host an evaluation leaderboard on **[Hugging Face](https://huggingface.co/)** upon acceptance of the paper.
+*This table presents the performance of 16 LLMs, evaluated across Easy, Medium, and Hard question categories. The metrics include the F1 Score and the LLM-as-a-Judge rating, capturing both token-level accuracy and semantic correctness. The results reveal a consistent decline in performance as question complexity increases, with notable model-specific strengths and weaknesses. \* denotes the models evaluated on a smaller subset due to cost constraints (see the paper for extended evaluation).*
 
-## Contact
+## Benchmarking Codes
 
-For questions or issues, please reach out to:
+To facilitate reproducibility and future research, we release our inference pipeline and benchmarking codes under a [CC-BY-NC-ND 4.0 license](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
-- Nikita Tatarinov: [ntatarinov3@gatech.edu](mailto:ntatarinov3@gatech.edu)
-- Agam Shah: [ashah482@gatech.edu](mailto:ashah482@gatech.edu)
-
-## Running the codes
-
-1. Ensure the files from HuggingFace are placed in `data/questions` directory. For inference only, files without ground-truth answers are sufficient. To run benchmarking, ground-truth answers are also required.
+1. Ablation experiments are run assuming access to question inputs within the experimental setup. Inference operates on question inputs only; benchmarking with reference answers is not supported.
 
 2. Ensure you have [conda or Anaconda/Miniconda](https://docs.conda.io/en/latest/) installed.
 
@@ -71,7 +60,7 @@ conda env create -f environment.yml
 5. Once environment creation finishes, activate it:
 
 ```bash
-conda activate kgqagen
+conda activate kgmulqa
 ```
 
 6. Customize `inference/config.py` file to run benchmarking in a specific setting.
@@ -82,25 +71,11 @@ conda activate kgqagen
 
    - Customize `TESTING_REGIME` to change the benchmarking setting.
 
-      - Use "FULL" for benchmarking LLMs with entire documents.
+7. For inference, navigate to `inference` directory. Run the inference:
 
-      - Use "RAG" for benchmarking LLMs with RAG (retrieval-augmented generation).
-
-      - Use "GOLD" for benchmarking LLMs with pieces of documents containing the answer (Oracle setting).
-
-7. For inference, navigate to `inference` directory.
-
-   - (Optional) For benchmarking with RAG, create a vectore store:
-
-   ```bash
-   python vector_db_builder.py
-   ```
-
-   - Run the inference:
-
-   ```bash
-   python main.py
-   ```
+```bash
+python main.py
+```
 
 8. For benchmarking, navigate to `benchmarking` directory.
 
@@ -118,13 +93,21 @@ conda activate kgqagen
 
 ## Citation
 
-If you use KG‑QAGen in your work, please cite:
+If you use KG‑MuLQA in your work, please cite:
 
 ```bibtex
-@inproceedings{kgqagen2025,
-  title     = {{KG‑QAGen}: A Knowledge‑Graph‑Based Framework for Systematic Question Generation and Long‑Context LLM Evaluation},
-  author    = {Tatarinov, Nikita and Kannan, Vidhyakshaya and Srinivasa, Haricharana and Raj, Arnav and Anand, Harpreet and Singh, Varun and Luthra, Aditya and Lade, Ravij and Shah, Agam and Chava, Sudheer},
-  booktitle = {NeurIPS Dataset and Benchmark},
-  year      = {2025},
-  url       = {https://github.com/gtfintechlab/KG-QAGen}
+@misc{tatarinov2026kgmulqaframeworkkgbasedmultilevel,
+      title={KG-MuLQA: A Framework for KG-based Multi-Level QA Extraction and Long-Context LLM Evaluation}, 
+      author={Nikita Tatarinov and Vidhyakshaya Kannan and Haricharana Srinivasa and Arnav Raj and Harpreet Singh Anand and Varun Singh and Aditya Luthra and Ravij Lade and Agam Shah and Sudheer Chava},
+      year={2026},
+      eprint={2505.12495},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2505.12495}, 
 }
+```
+
+For questions or issues, please reach out to:
+
+- Nikita Tatarinov: [ntatarinov3@gatech.edu](mailto:ntatarinov3@gatech.edu)
+- Agam Shah: [ashah482@gatech.edu](mailto:ashah482@gatech.edu)
