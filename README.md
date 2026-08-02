@@ -4,6 +4,9 @@
   <a href="https://arxiv.org/abs/2505.12495">
     <img src="https://img.shields.io/badge/arXiv-2505.12495-red?logo=arxiv"/>
   </a>
+  <a href="https://aclanthology.org/2026.acl-long.151/">
+    <img src="https://img.shields.io/badge/ACL_2026-Main_Conference-2C5F9E"/>
+  </a>
   <a href="https://huggingface.co/datasets/gtfintechlab/KG-MuLQA-D">
     <img src="https://img.shields.io/badge/HuggingFace-KG--MuLQA--D-yellow?logo=huggingface" />
   </a>
@@ -116,14 +119,32 @@ conda activate kgmulqa
 If you use KG‑MuLQA in your work, please cite:
 
 ```bibtex
-@misc{tatarinov2026kgmulqaframeworkkgbasedmultilevel,
-      title={KG-MuLQA: A Framework for KG-based Multi-Level QA Extraction and Long-Context LLM Evaluation}, 
-      author={Nikita Tatarinov and Vidhyakshaya Kannan and Haricharana Srinivasa and Arnav Raj and Harpreet Singh Anand and Varun Singh and Aditya Luthra and Ravij Lade and Agam Shah and Sudheer Chava},
-      year={2026},
-      eprint={2505.12495},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2505.12495}, 
+@inproceedings{tatarinov-etal-2026-kg,
+    title = "{KG}-{M}u{LQA}: A Framework for {KG}-based Multi-Level {QA} Extraction and Long-Context {LLM} Evaluation",
+    author = "Tatarinov, Nikita  and
+      Kannan, Vidhyakshaya  and
+      Srinivasa, Haricharana  and
+      Raj, Arnav  and
+      Singh Anand, Harpreet  and
+      Singh, Varun  and
+      Luthra, Aditya  and
+      Lade, Ravij  and
+      Shah, Agam  and
+      Chava, Sudheer",
+    editor = "Liakata, Maria  and
+      Moreira, Viviane P.  and
+      Zhang, Jiajun  and
+      Jurgens, David",
+    booktitle = "Proceedings of the 64th Annual Meeting of the {A}ssociation for {C}omputational {L}inguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2026",
+    address = "San Diego, California, United States",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2026.acl-long.151/",
+    doi = "10.18653/v1/2026.acl-long.151",
+    pages = "3323--3359",
+    ISBN = "979-8-89176-390-6",
+    abstract = "We introduce KG-MuLQA (Knowledge-Graph-based Multi-Level Question-Answer Extraction): a framework that (1) extracts QA pairs at multiple complexity levels (2) along three key dimensions {--} multi-hop retrieval, set operations, and answer plurality, (3) by leveraging knowledge-graph-based document representations. This approach enables fine-grained assessment of model performance across controlled difficulty levels. Using this framework, we construct a dataset of 20,139 QA pairs based on financial credit agreements and evaluate 16 proprietary and open-weight Large Language Models, observing that even the best-performing models struggle with set-based comparisons and multi-hop reasoning over long contexts. Our analysis reveals systematic failure modes tied to semantic misinterpretation and inability to handle implicit relations."
 }
 ```
 
